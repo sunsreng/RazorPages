@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WiredBrainCoffee.Services;
 
 namespace WiredBrainCoffee
 {
@@ -21,7 +23,19 @@ namespace WiredBrainCoffee
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddRazorPagesOptions(opts =>
+            {
+                opts.Conventions.AddPageRoute("/index", "home");
+                opts.Conventions.AddPageRoute("/index", "wired");
+            });
+
+            services.Configure<RouteOptions>(opts =>
+            {
+                opts.ConstraintMap.Add("promo", typeof(PromoConstraint));
+            });
+
+            services.AddScoped<IMenuService, MenuService>();
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
