@@ -16,7 +16,7 @@ namespace WiredBrainCoffee
             this.menuService = menuService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int count)
+        public IViewComponentResult Invoke(int count)
         {
             return View(menuService.GetPopularItems().Take(count));
         }
