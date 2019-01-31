@@ -31,7 +31,7 @@ namespace WiredBrainCoffee.Pages
             }
             catch (Exception e)
             {
-                logger.Log(LogLevel.Debug, "Could not retrieve menu.");
+                logger.Log(LogLevel.Debug, $"Could not retrieve menu. error: {e}");
             }
                 
             

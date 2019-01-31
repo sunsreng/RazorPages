@@ -11,6 +11,7 @@ namespace WiredBrainCoffee.Services
         public static void SendEmail(Contact contact)
         {
             // Todo
+
         }
 
         public static void SendEmail(string address)
